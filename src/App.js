@@ -6,6 +6,7 @@ import Newsletter from "./components/Footer/Newsletter/Newsletter";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import SingleProduct from "./components/Single Product/SingleProduct";
+import Success from "./components/Success/Success";
 import AppContext from "./utils/context";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" Component={Home} />
           <Route path="/category/:id" Component={Category} />
           <Route path="/products/:id" Component={SingleProduct} />
+          <Route path="/success" Component={Success} />
         </Routes>
         <Newsletter />
         <Footer />

@@ -19,10 +19,14 @@ const Search = ({ setShowSearch }) => {
   };
 
   const searchResultFunc = (query) => {
+    if (!query.length) {
+      setData(null);
+      return;
+    }
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://localhost:8080/api/search_results?text=${query}`,
+      url: process.env.REACT_APP_SERVER_URL+`api/search_results?text=${query}`,
     };
 
     axios
@@ -35,10 +39,6 @@ const Search = ({ setShowSearch }) => {
         console.log(error);
       });
   };
-
-  // if(!query.length){
-  //   setData(null);
-  // }
 
   return (
     <div className="search-modal">
@@ -53,28 +53,31 @@ const Search = ({ setShowSearch }) => {
         />
         <MdClose onClick={() => setShowSearch(false)} />
       </div>
-      
+
       <div className="search-result-content">
         <div className="search-results">
           {data?.map((item) => {
             return (
-            <div key={item.Id} className="search-result-item" onClick={() => {
-              navigate("/products/" + item.Id)
-              setShowSearch(false);
-              }}>
-              <div className="img-container">
-                <img src={prod} alt="" />
+              <div
+                key={item.Id}
+                className="search-result-item"
+                onClick={() => {
+                  navigate("/products/" + item.Id);
+                  setShowSearch(false);
+                }}
+              >
+                <div className="img-container">
+                  <img src={prod} alt="" />
+                </div>
+                <div className="prod-details">
+                  <span className="name">{item?.Title}</span>
+                  <span className="desc">{item?.Description}</span>
+                </div>
               </div>
-              <div className="prod-details">
-                <span className="name">{item?.Title}</span>
-                <span className="desc">{item?.Description}</span>
-              </div>
-            </div>
             );
           })}
         </div>
       </div>
-      
     </div>
   );
 };

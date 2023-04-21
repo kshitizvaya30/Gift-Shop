@@ -35,7 +35,7 @@ const Category = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://localhost:8080/api/CategoryWiseData/${id}`,
+      url: process.env.REACT_APP_SERVER_URL+`api/CategoryWiseData/${id}`,
     };
 
     axios

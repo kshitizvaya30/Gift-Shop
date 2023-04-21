@@ -25,13 +25,10 @@ const SingleProduct = () => {
   const [categoryId, setCategoryId] = useState(0);
 
   useEffect(() => {
-    console.log("inhere");
     getProductData(id);
   }, [id])
 
   function getCategoryNameById(id) {
-    // console.log(id);
-    // console.log(categories);
     for (let i = 0; i < categories.length; i++) {
       if (categories[i].id == id) {
         setCategoryName(categories[i].category_name.toUpperCase());
@@ -48,13 +45,13 @@ const SingleProduct = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://localhost:8080/api/products/${id}`,
+      url: process.env.REACT_APP_SERVER_URL+`api/products/${id}`,
     };
 
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setProduct(response.data);
         getCategoryNameById(response.data[0].category_id);

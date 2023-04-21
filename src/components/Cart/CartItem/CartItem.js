@@ -7,7 +7,7 @@ import { Context } from "../../../utils/context";
 const CartItem = () => {
   const { cartItems, handleCartProductQuantity, handleRemoveFromCart } =
     useContext(Context);
-    console.log(cartItems);
+    
   return (
     <div className="cart-products">
       {cartItems.map((item) => {

@@ -8,8 +8,8 @@ const RelatedProducts = ({ categoryId, productId }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log(categoryId);
-//     getCategoryData();
+    // console.log(categoryId);
+    getCategoryData();
   }, []);
 
   //Get Category Data
@@ -17,13 +17,13 @@ const RelatedProducts = ({ categoryId, productId }) => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `http://localhost:8080/api/CategoryWiseData/${categoryId}`,
+      url: process.env.REACT_APP_SERVER_URL+`api/CategoryWiseData/${categoryId}`,
     };
 
     axios
       .request(config)
       .then((response) => {
-        console.log("related Products", response.data);
+        // console.log("related Products", response.data);
         setData(response.data.filter(item => item.productid !== productId));
       })
       .catch((error) => {

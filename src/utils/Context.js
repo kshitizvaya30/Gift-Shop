@@ -33,8 +33,6 @@ const AppContext = ({ children }) => {
     }, [cartItems]);
 
     const handleAddToCart = (product, quantity) => {
-        console.log("iniytaol", product)
-        console.log(cartItems);
         let items = [...cartItems];
         let index = items?.findIndex((p) => p.Id === product?.Id);
         if (index !== -1) {
@@ -44,8 +42,6 @@ const AppContext = ({ children }) => {
             items = [...items, product];
         }
         setCartItems(items);
-        console.log("later", product)
-        console.log("inside conetxt", cartItems);
     };
 
     const handleRemoveFromCart = (product) => {
