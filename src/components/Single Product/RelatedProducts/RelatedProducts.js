@@ -1,17 +1,41 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../../../hooks/useFetch";
+import { Context } from "../../../utils/context";
 import Products from "../../Products/Products";
 
 const RelatedProducts = ({ categoryId, productId }) => {
-    const { data } = useFetch(
-        `/api/products?populate=*&filters[id][$ne]=${productId}&filters[categories][id]=${categoryId}&pagination[start]=0&pagination[limit]=4`
-    );
+  const [data, setData] = useState([]);
 
-    return (
-        <div className="related-products">
-            <Products headingText="Related Products" products={data} />
-        </div>
-    );
+  useEffect(() => {
+    console.log(categoryId);
+//     getCategoryData();
+  }, []);
+
+  //Get Category Data
+  const getCategoryData = (categoryId) => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: `http://localhost:8080/api/CategoryWiseData/${categoryId}`,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log("related Products", response.data);
+        setData(response.data.filter(item => item.productid !== productId));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <div className="related-products">
+      <Products headingText="Related Products" products={data} />
+    </div>
+  );
 };
 
 export default RelatedProducts;

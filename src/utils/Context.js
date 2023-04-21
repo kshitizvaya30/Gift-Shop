@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 export const Context = createContext();
 
 const AppContext = ({ children }) => {
-    const [categories, setCategories] = useState();
-    const [products, setProducts] = useState();
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
@@ -21,43 +21,47 @@ const AppContext = ({ children }) => {
 
     useEffect(() => {
         let count = 0;
-        cartItems?.map((item) => (count += item.attributes.quantity));
+        cartItems?.map((item) => (count += item.quantity));
         setCartCount(count);
 
         let subTotal = 0;
         cartItems.map(
             (item) =>
-                (subTotal += item.attributes.price * item.attributes.quantity)
+                (subTotal += item.Price * item.quantity)
         );
         setCartSubTotal(subTotal);
     }, [cartItems]);
 
     const handleAddToCart = (product, quantity) => {
+        console.log("iniytaol", product)
+        console.log(cartItems);
         let items = [...cartItems];
-        let index = items?.findIndex((p) => p.id === product?.id);
+        let index = items?.findIndex((p) => p.Id === product?.Id);
         if (index !== -1) {
-            items[index].attributes.quantity += quantity;
+            items[index].quantity += quantity;
         } else {
-            product.attributes.quantity = quantity;
+            product.quantity = quantity;
             items = [...items, product];
         }
         setCartItems(items);
+        console.log("later", product)
+        console.log("inside conetxt", cartItems);
     };
 
     const handleRemoveFromCart = (product) => {
         let items = [...cartItems];
-        items = items?.filter((p) => p.id !== product?.id);
+        items = items?.filter((p) => p.Id !== product?.Id);
         setCartItems(items);
     };
 
     const handleCartProductQuantity = (type, product) => {
         let items = [...cartItems];
-        let index = items?.findIndex((p) => p.id === product?.id);
+        let index = items?.findIndex((p) => p.Id === product?.Id);
         if (type === "inc") {
-            items[index].attributes.quantity += 1;
+            items[index].quantity += 1;
         } else if (type === "dec") {
-            if (items[index].attributes.quantity === 1) return;
-            items[index].attributes.quantity -= 1;
+            if (items[index].quantity === 1) return;
+            items[index].quantity -= 1;
         }
         setCartItems(items);
     };
