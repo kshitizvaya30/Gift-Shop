@@ -13,7 +13,7 @@ function Home() {
     useEffect(() => {
       getCategories();
       getProducts();
-    },[data])
+    },[data]);
 
     const getCategories = () => {
         fetchDataFromApi("api/categories").then((res) => {

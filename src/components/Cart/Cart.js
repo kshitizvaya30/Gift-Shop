@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 import "./Cart.scss";
@@ -12,6 +12,7 @@ const Cart = ({ setShowCart }) => {
     useContext(Context);
   const [emailAddress, setEmailAddress] = useState("");
   const navigate = useNavigate();
+  
 
   const handleCheckOut = () => {
     if (validateEmail(emailAddress)) {
@@ -23,24 +24,22 @@ const Cart = ({ setShowCart }) => {
 
       let config = {
         method: "POST",
-        url: process.env.REACT_APP_SERVER_URL+"api/addOrder",
+        url: process.env.REACT_APP_SERVER_URL + "api/addOrder",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       };
 
-      axios.post(
-        process.env.REACT_APP_SERVER_URL+"api/addOrder",
-        data
-      ).then((resp) => {
-        console.log(JSON.stringify(resp.data));
+      axios
+        .post(process.env.REACT_APP_SERVER_URL + "api/addOrder", data)
+        .then((resp) => {
+          console.log(JSON.stringify(resp.data));
           setCartItems([]);
           setShowCart(false);
           navigate("./success");
           // console.log("Success Page");
-
-      })
+        });
     } else {
       alert("Please enter a valid email address.");
     }

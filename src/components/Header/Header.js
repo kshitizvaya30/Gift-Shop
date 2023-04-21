@@ -21,6 +21,13 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
   }, []);
 
+  const handlecategories = () => {
+    window.scrollTo({
+      top: 800,
+      behavior: "smooth"
+    });
+  };
+
   const handleScroll = () => {
     const offSet = window.scrollY;
     if (offSet > 200) {
@@ -37,7 +44,7 @@ function Header() {
         <ul className="left">
           <li onClick={() => {navigate('/')}}>Home</li>
           <li>About</li>
-          <li>Category</li>
+          <li onClick={handlecategories}>Category</li>
         </ul>
         <div className="center" onClick={() => {navigate('/')}}>GIFTers</div>
         <div className="right">

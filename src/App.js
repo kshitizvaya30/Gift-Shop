@@ -7,7 +7,7 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import SingleProduct from "./components/Single Product/SingleProduct";
 import Success from "./components/Success/Success";
-import AppContext from "./utils/context";
+import AppContext from "./utils/context.js";
 
 function App() {
   return (
