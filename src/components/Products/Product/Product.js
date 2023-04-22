@@ -8,7 +8,7 @@ const Product = ({product, id}) => {
   return (
     <div className="product-card" onClick={() => navigate('/products/'+id)}>
       <div className="thumbnail">
-        <img src={producstImg}  alt={product.Id} />
+        <img src={"https://drive.google.com/uc?export=view&id=" + product.image_url}  alt={product.id} />
       </div>
       <div className="prod-details">
         <span className="name">{product.Title}</span>

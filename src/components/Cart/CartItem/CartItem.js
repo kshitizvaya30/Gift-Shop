@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { MdClose } from "react-icons/md";
-import prod from "../.../../../../assets/products/earbuds-prod-1.webp";
+// import prod from "../.../../../../assets/products/earbuds-prod-1.webp";
 import "./CartItem.scss";
 import { Context } from "../../../utils/context";
 
@@ -12,9 +12,9 @@ const CartItem = () => {
     <div className="cart-products">
       {cartItems.map((item) => {
         return (
-          <div key={item.Id} className="cart-product">
+          <div key={item.id} className="cart-product">
             <div className="img-container">
-              <img src={prod} alt="" />
+              <img src={"https://drive.google.com/uc?export=view&id=" + item?.image_url} alt="" />
             </div>
             <div className="prod-details">
               <span className="name"> {item.Title}</span>

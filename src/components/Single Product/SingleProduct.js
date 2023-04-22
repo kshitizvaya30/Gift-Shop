@@ -11,7 +11,7 @@ import {
   FaCartPlus,
 } from "react-icons/fa";
 import "./SingleProduct.scss";
-import producstImg from "../../assets/products/earbuds-prod-1.webp";
+// import producstImg from "../../assets/products/earbuds-prod-1.webp";
 import axios from "axios";
 
 const SingleProduct = () => {
@@ -80,7 +80,7 @@ const SingleProduct = () => {
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
-            <img src={producstImg} alt="" />
+            <img src={"https://drive.google.com/uc?export=view&id=" + product[0]?.image_url} alt="" />
           </div>
           <div className="right">
             <span className="name">{product[0]?.Title}</span>

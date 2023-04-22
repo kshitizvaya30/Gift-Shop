@@ -8,7 +8,7 @@ const Products = ({ innerPage, headingText, products }) => {
       {!innerPage && <div className="sec-heading">{headingText}</div>}
       <div className="products">
         {products?.map((item) => {
-          return <Product key={item.Id} id ={item.Id} product={item} />;
+          return <Product key={item.id} id ={item.id} product={item} />;
         })}
       </div>
     </div>

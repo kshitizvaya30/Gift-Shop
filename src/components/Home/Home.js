@@ -15,10 +15,13 @@ function Home() {
       getProducts();
     },[data]);
 
+    
+
     const getCategories = () => {
         fetchDataFromApi("api/categories").then((res) => {
             // console.log("categories" , res);
             setCategories(res);
+
         });
     }
 

@@ -59,10 +59,10 @@ const Search = ({ setShowSearch }) => {
           {data?.map((item) => {
             return (
               <div
-                key={item.Id}
+                key={item.id}
                 className="search-result-item"
                 onClick={() => {
-                  navigate("/products/" + item.Id);
+                  navigate("/products/" + item.id);
                   setShowSearch(false);
                 }}
               >
